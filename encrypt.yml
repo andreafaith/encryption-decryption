@@ -4,12 +4,16 @@
   hosts: localhost
   gather_facts: false
   vars:
-    image_to_encrypt: "/home/rouj/encryption-decryption/to_encrypt/"
-    encrypted_image: "/home/rouj/encryption-decryption/encrypted/"
+    file_to_encrypt: "/home/rouj/encryption-decryption/to_encrypt/xray.pdf"
+    encrypted_file: "/home/rouj/encryption-decryption/encrypted/encrypted1.txt"
     blowfish_password: "admin123!"
 
   tasks:
     - name: Encrypt image using Blowfish
       become: yes
-      shell: |
-        openssl enc -e -blowfish -a -salt -in "{{ image_to_encrypt }}" -out "{{ encrypted_image }}" -pass pass:"{{ blowfish_password }}"
+      command: openssl enc -e -blowfish -pbkdf2 -in "{{ file_to_encrypt }}" -out "{{ encrypted_file }}" -k "{{ blowfish_password }}"
+
+    - name: Ensure encrypted file is present
+      copy:
+        src: "{{ encrypted_file }}"
+        dest: "{{ encrpyted_file }}"
