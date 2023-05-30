@@ -1,0 +1,15 @@
+---
+
+- name: Create and Extract a Key for User
+  expect:
+    command: openssl genrsa -aes256 -out "/home/rouj/encryption-decryption/to_encrypt/RSA/private_key.pem" 4096
+    responses:
+      Enter PEM pass phrase: "Ch1n3l"
+      Verifying - Enter PEM pass phrase: "Ch1n3l"
+
+- name: Encrypt File using RSA (text)
+  expect:
+    command: openssl pkeyutl -encrypt -inkey "/home/rouj/encryption-decryption/to_encrypt/RSA/private_key.pem" -in "/home/rouj/encryption-decryption/to_encrypt/RSA/rsa.txt" -out "/home/rouj/encryption-decryption/encrypted/RSA/rsa_encrypted.enc"
+    responses:
+      Enter pass phrase for /home/rouj/encryption-decryption/to_encrypt/RSA/private_key.pem: "Ch1n3l"
+

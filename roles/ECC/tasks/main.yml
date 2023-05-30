@@ -1,0 +1,37 @@
+#encryption-decryption/roles/ECC/tasks/main.yml
+
+---
+
+- name: Generate ECC Private Key
+  command: |
+    openssl ecparam -name prime256v1 -genkey -out "/home/rouj/encryption-decryption/to_encrypt/ECC/private_key.pem"
+
+- name: Generate ECC Public Key
+  command: |
+    openssl ec -in "/home/rouj/encryption-decryption/to_encrypt/ECC/private_key.pem" -pubout -out "/home/rouj/encryption-decryption/to_encrypt/ECC/public_key.pem"
+
+# - name: Generate Symmetric Key
+#  command: |
+#    openssl rand 32 > "/home/rouj/encryption-decryption/to_encrypt/ECC/symmetric_key.txt"
+#  ignore_errors: true
+
+- name: Encrypting the File (pdf)
+  command: |
+    openssl enc -aes-256-cbc -salt -in "/home/rouj/encryption-decryption/to_encrypt/ECC/ecc.pdf" -out "/home/rouj/encryption-decryption/encrypted/ECC/ecc_encrypted1.txt" -pass file:"/home/rouj/encryption-decryption/to_encrypt/ECC/symmetric_key.txt"
+
+- name: Encrypting the File (txt)
+  command: |
+    openssl enc -aes-256-cbc -salt -in "/home/rouj/encryption-decryption/to_encrypt/ECC/ecc.txt" -out "/home/rouj/encryption-decryption/encrypted/ECC/ecc_encrypted2.txt" -pass file:"/home/rouj/encryption-decryption/to_encrypt/ECC/symmetric_key.txt"
+
+- name: Encrypting the File (image)
+  command: |
+    openssl enc -aes-256-cbc -salt -in "/home/rouj/encryption-decryption/to_encrypt/ECC/ecc.jpeg" -out "/home/rouj/encryption-decryption/encrypted/ECC/ecc_encrypted3.txt" -pass file:"/home/rouj/encryption-decryption/to_encrypt/ECC/symmetric_key.txt"
+
+
+
+
+
+
+
+
+

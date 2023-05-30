@@ -1,19 +1,25 @@
+#This is the encryption playbook used in the research
+
 ---
 
-- name: Encrypt image file using Blowfish
-  hosts: localhost
+- name: Encryption using Differents Methods
+  hosts: all
   gather_facts: false
-  vars:
-    file_to_encrypt: "/home/rouj/encryption-decryption/to_encrypt/xray.pdf"
-    encrypted_file: "/home/rouj/encryption-decryption/encrypted/encrypted1.txt"
-    blowfish_password: "admin123!"
+  become: true
 
-  tasks:
-    - name: Encrypt image using Blowfish
-      become: yes
-      command: openssl enc -e -blowfish -pbkdf2 -in "{{ file_to_encrypt }}" -out "{{ encrypted_file }}" -k "{{ blowfish_password }}"
+  pre_tasks:
 
-    - name: Ensure encrypted file is present
-      copy:
-        src: "{{ encrypted_file }}"
-        dest: "{{ encrpyted_file }}"
+  - name: Update Nodes
+    apt:
+      update_cache: yes
+      upgrade: dist
+
+- hosts: managed
+  become: true
+  roles:
+    - Blowfish
+    - AES
+    - RSA
+    - 3DES
+    - ECC
+

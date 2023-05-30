@@ -1,0 +1,24 @@
+#encryption-decryption/roles/AES/tasks/main.yml
+
+---
+
+- name: AES Encryption Method (pdf)
+  expect:
+    command: ansible-vault encrypt --ask-vault-pass /home/rouj/encryption-decryption/to_encrypt/AES/aes.pdf
+    responses:
+      New Vault password: "AES_encrypt123!"
+      Confirm New Vault password: "AES_encrypt123!"
+
+- name: AES Encryption Method (text)
+  expect:
+    command: ansible-vault encrypt --ask-vault-pass /home/rouj/encryption-decryption/to_encrypt/AES/aes.txt
+    responses:
+      New Vault password: "AES_encrypt123!"
+      Confirm New Vault password: "AES_encrypt123!"
+
+- name: AES Encryption Method (image)
+  expect:
+    command: ansible-vault encrypt --ask-vault-pass /home/rouj/encryption-decryption/to_encrypt/AES/aes.jpeg
+    responses:
+      New Vault password: "AES_encrypt123!"
+      Confirm New Vault password: "AES_encrypt123!"

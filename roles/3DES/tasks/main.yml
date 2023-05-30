@@ -1,0 +1,17 @@
+#encryption-decryption/roles/3DES/tasks/main.yml
+---
+
+- name: 3DES Encryption Method (pdf)
+  command: |
+    openssl des3 -salt -in "/home/rouj/encryption-decryption/to_encrypt/3DES/3des.pdf" -out "/home/rouj/encryption-decryption/encrypted/3DES/3des_encrypted1.txt" -k "3DESEncrypt123!"
+
+- name: 3DES Encryption Method (text)
+  command: |
+    openssl des3 -salt -in "/home/rouj/encryption-decryption/to_encrypt/3DES/3des.txt" -out "/home/rouj/encryption-decryption/encrypted/3DES/3des_encrypted2.txt" -k "3DESEncrypt123!"
+
+- name: 3DES Encryption Method (image)
+  command: |
+    openssl des3 -salt -in "/home/rouj/encryption-decryption/to_encrypt/3DES/3des.jpeg" -out "/home/rouj/encryption-decryption/encrypted/3DES/3des_encrypted3.txt" -k "3DESEncrypt123!"
+
+
+

@@ -1,0 +1,11 @@
+---
+
+- name: Blowfish
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Encrypt using Blowfish
+    become: yes
+      command: openssl enc -e -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/to_encrypt/Blowfish/blowfish.pdf" -out "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted.txt" > "/home/rouj/encryption-decryption/encryption.log" -k "Admin123!"
+      ignore_errors: true

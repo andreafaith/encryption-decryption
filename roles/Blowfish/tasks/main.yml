@@ -1,0 +1,45 @@
+#encryption-decryption/roles/Blowfish/tasks/main.yml
+
+---
+
+#- name: Encrypt using Blowfish (pdf)
+#  become: yes
+#  command:
+#    openssl enc -e -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/to_encrypt/Blowfish/blowfish.pdf" -out "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted1.txt" -k "Blowfish123!"
+#  ignore_errors: true
+
+#- name: Encrypt using Blowfish (text)
+#  become: yes
+#  command:
+#    openssl enc -e -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/to_encrypt/Blowfish/blowfish.txt" -out "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted2.txt" -k "Blowfish123!"
+#  ignore_errors: true
+
+#- name: Encrypt using Blowfish (image)
+#  become: yes
+#  command:
+#    openssl enc -e -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/to_encrypt/Blowfish/blowfish.jpeg" -out "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted3.txt" -k "Blowfish123!"
+#  ignore_errors: true
+
+
+# Decrypt
+- name: Decrypt using Blowfish (pdf)
+  become: yes
+  command:
+    openssl enc -d -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted1.txt" -out "/home/rouj/encryption-decryption/decrypted/Blowfish/blowfish.pdf" -k "Blowfish123!"
+  ignore_errors: true
+
+- name: Decrypt using Blowfish (text)
+  become: yes
+  command:
+    openssl enc -d -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted2.txt" -out "/home/rouj/encryption-decryption/decrypted/Blowfish/blowfish.txt" -k "Blowfish123!"
+  ignore_errors: true
+
+- name: Decrypt using Blowfish (image)
+  become: yes
+  command:
+    openssl enc -d -blowfish -pbkdf2 -in "/home/rouj/encryption-decryption/encrypted/Blowfish/bf_encrypted3.txt" -out "/home/rouj/encryption-decryption/decrypted/Blowfish/blowfish.jpeg" -k "Blowfish123!"
+  ignore_errors: true
+
+
+
+

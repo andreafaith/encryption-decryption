@@ -1,0 +1,25 @@
+---
+
+- name: Encryption using Differents Methods
+  hosts: all
+  gather_facts: false
+  become: true
+
+#  pre_tasks:
+
+#  - name: Update Nodes
+#    apt:
+#      update_cache: yes
+#      upgrade: dist
+
+- hosts: managed
+  become: true
+  roles:
+#    - Blowfish
+#    - AES
+    - RSA
+#    - 3DES
+#    - ECC
+
+
+
